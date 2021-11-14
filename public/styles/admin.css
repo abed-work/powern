@@ -1,0 +1,276 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Poppins", Sans-serif;
+    font-weight: 200;
+    background-color: #f4f4f4;
+}
+
+input,
+textarea,
+select {
+    border: 1px solid #d4d4d4;
+    padding: 10px;
+    width: 100%;
+}
+
+ul {
+    margin: 0 !important;
+    padding: 0 !important;
+    list-style: none;
+}
+
+ul li a {
+    color: rgb(236, 236, 236);
+    text-decoration: none;
+}
+
+.success {
+    background-color: #42ba96;
+    color: #FFF;
+    padding: 5px;
+    text-align: center;
+}
+
+.admin {
+    display: flex;
+}
+
+.admin-head {
+    padding: 35px 0;
+    text-align: center;
+}
+
+.admin-head .admin-icon {
+    font-size: 45px;
+}
+
+.admin-head .admin-email {
+    font-size: 14px;
+}
+
+.side-bar {
+    width: 200px;
+    padding: 10px 30px;
+    background-color: #0f172a;
+    height: 100vh;
+    overflow-y: auto;
+    color: #fff;
+    position: sticky;
+    top: 0;
+}
+
+.side-bar ul::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-right: 10px solid #fff;
+    border-bottom: 10px solid transparent;
+}
+
+.side-bar a {
+    display: block;
+    display: flex;
+    align-items: center;
+    padding: 7px;
+    margin: 5px 0;
+}
+
+.side-bar a span {
+    font-size: 14px;
+    display: block
+}
+
+.side-bar a .icon {
+    font-size: 17px !important;
+    margin-right: 5px;
+    width: 30px;
+}
+
+.side-bar a:hover,
+.side-bar .logout:hover {
+    background-color: rgb(241, 245, 249, 0.3);
+    color: rgb(236, 236, 236);
+    border-radius: 5px;
+}
+
+.side-bar .logout {
+    display: flex;
+    padding: 12px 7px;
+    align-items: center;
+    color: rgb(236, 236, 236);
+    cursor: pointer;
+}
+
+.side-bar input[type="submit"] {
+    background: transparent;
+    border: none;
+    color: #d4d4d4;
+    padding: 0;
+    text-align: left;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.side-bar form .logout i {
+    font-size: 17px;
+    margin-right: 18px;
+}
+
+.admin .main-content {
+    width: calc(100% - 200px);
+    padding: 50px 20px;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 5px;
+    margin-bottom: 50px;
+}
+
+.card .card-header {
+    font-weight: 700;
+    padding: 15px;
+    border-bottom: 1px solid #f4f4f4;
+}
+
+.card .card-body {
+    padding: 30px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    color: rgb(100, 116, 139);
+}
+
+table th {
+    text-align: left;
+    font-weight: 500;
+}
+
+table tbody tr {
+    border-bottom: 1px solid #f4f4f4;
+}
+
+table tbody tr:last-child {
+    border-bottom: none;
+}
+
+table tbody tr td {
+    padding: 10px 5px;
+}
+
+table .operation{
+    display: flex;
+}
+
+table .delete-form button{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.category-list i {
+    margin-right: 10px;
+}
+
+.delete {
+    color: rgb(255, 47, 47);
+}
+
+.edit {
+    color: #000;
+}
+
+.form-group {
+    margin: 15px 0;
+}
+
+.edit-image {
+    display: inline-block;
+    position: relative;
+}
+
+.edit-image .del {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.form-group .label {
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.save-btn {
+    background-color: seagreen;
+    color: #fff;
+    width: 150px;
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+    font-size: 14px;
+    padding: 10px;
+}
+
+.btn-file .image-label {
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+    height: 10px;
+}
+
+.btn-file {
+    border: 1px solid #d4d4d4;
+}
+
+.image-parent {
+    margin-top: 35px;
+}
+
+.chosen-container-multi .chosen-choices{
+    padding: 5px 10px !important;
+    background: none !important;
+    border: 1px solid #d4d4d4 !important;
+}
+
+
+#frames{
+    margin-top: 40px;
+}
+#frames img{
+    margin-left: 10px;
+}
