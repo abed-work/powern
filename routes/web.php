@@ -5,6 +5,8 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\PagesController;
+use App\Http\Controllers\SettingController;
 use App\Models\Category;
 
 /*
@@ -18,9 +20,7 @@ use App\Models\Category;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.welcome');
-})->name('home');
+Route::get('/',[PagesController::class,'index'])->name('home');
 
 Route::get('shop', [ProductController::class,'index'])->name('shop');
 
@@ -40,9 +40,13 @@ Route::post('/login', [AuthController::class,'authenticate']);
 Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 Route::post('/logout', [AuthController::class,'logout']);
 
+
+
+Route::get('/product/{id}', [ProductController::class,'show'])->name('product.show');
+
+
+
 /* Admin Routes */
-
-
 
 Route::prefix('dashboard')->name('dashboard.')->group(function () {
 
@@ -62,5 +66,8 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
     Route::delete('/products/{id}', [ProductController::class,'destroy'])->name('product.delete');
 
     Route::get('/setting', [DashboardController::class,'setting'])->name('setting');
+
+    Route::post('/setting/edit', [SettingController::class,'update'])->name('setting.update');
+
 
 });

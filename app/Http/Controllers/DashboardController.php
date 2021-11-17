@@ -4,8 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
+
+
 class DashboardController extends Controller
 {
     public function __construct(){
@@ -22,6 +25,7 @@ class DashboardController extends Controller
                     ->whereNull('parent')
                     ->orderBy('name', 'asc')
                     ->get());
+                    
     }
 
     public function product(){
@@ -32,7 +36,9 @@ class DashboardController extends Controller
     }
 
     public function setting(){
-        return view('pages.admin.setting');
+        return view('pages.admin.setting',[
+            'settings'=>Setting::all()
+        ]);
     }
 
 }

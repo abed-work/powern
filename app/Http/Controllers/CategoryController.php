@@ -66,6 +66,7 @@ class CategoryController extends Controller
             'description' =>$request->category_description,
             'parent'=> ($request->category_parent == 0 ? NULL:$request->category_parent),
             'image'=> $filenameToStore,
+            'showAtHome'=>($request->isFeatured?1:0)
         ]);
 
         return redirect()
@@ -92,7 +93,6 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-
         $parentCategories = DB::table('categories')
                 ->where('parent', '=', NULL)
                 ->get();
@@ -136,8 +136,10 @@ class CategoryController extends Controller
             $path = $image->storeAs('public/assets/images/categories' , $filenameToStore);
         }else{
             if($request->hidden_category_image == ''){
-                if (file_exists(storage_path().'/app/public/assets/images/categories/'.$Category->image))
+                if($Category->image){
+                    if (file_exists(storage_path().'/app/public/assets/images/categories/'.$Category->image))
                     unlink(storage_path().'/app/public/assets/images/categories/'.$Category->image);
+                }
                 $filenameToStore=NULL;
             }
         }
@@ -146,10 +148,13 @@ class CategoryController extends Controller
         $Category->description=$request->category_description;
         $Category->parent=$request->category_parent == 0 ? NULL:$request->category_parent;
         $Category->image=$filenameToStore;
+        $Category->showAtHome=$request->isFeatured?1:0;
 
         $Category->save();
 
-        return redirect()->route('dashboard.category.edit',$id);
+        return redirect()
+                ->route('dashboard.category.edit',$id)
+                ->with('success','Category has been saved!');
         
 
     }

@@ -21,15 +21,14 @@
         <div class="col">
             <h4>Follow Us</h4>
             <div class="social-media flex">
-                <div class="facebook"><a href="#"><i class="fab fa-facebook"></i></a></div>
-                <div class="instagram"><a href=""><i class="fab fa-instagram"></i></a></div>
-                <div class="twitter"><a href=""><i class="fab fa-twitter"></i></a></div>
+                <div class="facebook"><a target="_blank" href="{{$settings[0]->value}}"><i class="fab fa-facebook"></i></a></div>
+                <div class="instagram"><a target="_blank" href="{{$settings[1]->value}}"><i class="fab fa-instagram"></i></a></div>
             </div>
         </div>
     </div>
     <div class="copy-right">
         <div class="container">
-            Copyright © E-commerce All Right Reserved.
+            Copyright © powern All Right Reserved.
         </div>
     </div>
 </div>

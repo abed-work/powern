@@ -4,22 +4,21 @@
     <div class="card category-list">
         <div class="card-header"><i class="fas fa-clipboard-list"></i>Settings</div>
         <div class="card-body">
-           <div class="form-group">
-               <div class="label">Facebook</div>
-               <input type="text" name="" id="" value="https://www.facebook.com/idontknow">
-           </div>
-           <div class="form-group">
-                <div class="label">Instagram</div>
-                <input type="text" name="" id="" value="https://www.instagram.com/idontknow">
-            </div>
-            <div class="form-group">
-                <div class="label">Twitter</div>
-                <input type="text" name="" id="" value="https://www.twitter.com/idontknow">
-            </div>
-            <div class="form-group">
-                <div class="label">Whatsapp</div>
-                <input type="text" name="" id="" value="0096171265987">
-            </div>
+            <form action="{{route('dashboard.setting.update')}}" method="POST">
+                @csrf
+                @foreach ($settings as $setting)
+                    <div class="form-group">
+                        <div class="label">{{$setting->key}}</div>
+                        <input type="text" name="{{$setting->key}}" id="" value="{{$setting->value}}">
+                    </div>
+                @endforeach
+                <div class="form-group ">
+                    <input class="save-btn" type="submit" value="Save changes">
+                </div>
+            </form>
+            @if(session('success'))
+                <div class="success">{{session('success')}}</div>
+            @endif
         </div>
     </div>
 @endsection

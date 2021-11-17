@@ -10,10 +10,16 @@
                 <div class="form-group">
                     <div class="label">Name</div>
                     <input type="text" name="category_name" id="" placeholder="Laptops..." value="{{$category->name}}">
+                    @error('category_name')
+                        <div class="error-message">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <div class="label">Description</div>
                     <textarea  id="" name="category_description" cols="30" rows="10" placeholder="Description">{{$category->description}}</textarea>
+                    @error('category_description')
+                        <div class="error-message">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <div class="label">Choose a parent category</div>
@@ -27,6 +33,13 @@
                             @endforeach
                             <option value="" {{($category->parent == NULL?'selected':'')}} >Default: no parent category</option>
                     </select>
+                </div>
+                <div class="form-group">
+                    <div class="label">Check to add this category on home page</div>
+                    <div class="isfeature">
+                        <input type="checkbox" name="isFeatured" id="" {{($category->showAtHome?'checked':'')}}>
+                        <span class="checkbox-label">show on home page</span>
+                    </div>
                 </div>
                 <div class="form-group image-parent">
                     <span class="btn btn-primary btn-file">
@@ -59,10 +72,9 @@
     <script>
         if(document.querySelector('.del')){
             document.querySelector('.del').addEventListener('click',()=>{
-            document.querySelector('[name="hidden_category_image"]').setAttribute('value','');
-            document.querySelector('.edit-image').remove();
-        });
+                document.querySelector('[name="hidden_category_image"]').setAttribute('value','');
+                document.querySelector('.edit-image').remove();
+            });
         }
-
     </script>
 @endsection

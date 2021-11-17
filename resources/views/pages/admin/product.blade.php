@@ -8,6 +8,7 @@
            <table>
                <thead>
                     <th>#</th>
+                    <th>Image</th>
                     <th>Name</th>
                     <th>Price</th>
                     <th>Category</th>
@@ -17,19 +18,20 @@
                     @foreach ($products as $product)
                         <tr>
                             <td>{{$loop->iteration}}</td>
+                            <td><img src="{{asset('storage/assets/images/products/'.$product->images[0]->src)}}" alt="" width="70px" height="70px"></td>
                             <td>{{$product->name}}</td>
                             <td>{{$product->price}}</td>
                             <td>
                                 @if (count($product->categories) > 0)
                                     @foreach ($product->categories as $category)
-                                        {{$category->name}},
+                                        {{$category->name}}{{($loop->iteration < count($product->categories)?',':'.')}}
                                     @endforeach
                                 @else
                                     -
                                 @endif
                             </td>
-                            <td class="operation">
-                                <div><i class="fas fa-eye"></i></div>
+                            <td class="operation {{($product->images[0]->src?'image':'')}}">
+                                <div><a target="_blank" href={{route('product.show',[$product->id])}}><i class="fas fa-eye"></i></a></div>
                                 <div><a href={{route('dashboard.product.edit',[$product->id])}}><i class="fas fa-edit"></i></a></div>
                                 <div>
                                     <form class="delete-form" action={{route('dashboard.product.delete',[$product->id])}} method="POST">
@@ -54,14 +56,23 @@
                 <div class="form-group">
                     <div class="label">Name</div>
                     <input type="text" name="name" id="" placeholder="Laptops...">
+                    @error('name')
+                        <div class="error-message">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <div class="label">Description</div>
                     <textarea name="description" id="" cols="30" rows="10" placeholder="Description"></textarea>
+                    @error('description')
+                        <div class="error-message">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <div class="label">Price</div>
                     <input type="number" name="price" id="" min="0" placeholder="10.00" step="0.01" required >
+                    @error('price')
+                        <div class="error-message">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <div class="label">Choose one or more categories</div>
@@ -75,12 +86,18 @@
                     <span class="btn btn-primary btn-file">
                     <i class="fas fa-images"></i> Upload product images<input id="images" type="file" name="product_images[]" multiple>
                     </span>
+                    @error('product_images')
+                        <div class="error-message">{{ $message }}</div>
+                    @enderror
                     <div id="frames" style="margin-top: 40px"></div>
                 </div>
                 <div class="form-group ">
                     <input class="save-btn" type="submit" value="Add">
                 </div>
             </form>
+            @if(session('success'))
+                <div class="success">{{session('success')}}</div>
+            @endif
         </div>
     </div>
 @endsection

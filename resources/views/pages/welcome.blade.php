@@ -21,157 +21,43 @@
     </div>
 
     <div class="container" id="tabs">
-      <button data-toggle="tab" data-tabs=".gtabs.demo" data-tab=".tab-1" class="btn btn-info active" >best selling</button>
-      <button data-toggle="tab" data-tabs=".gtabs.demo" data-tab=".tab-2" class="btn btn-info" >new arrivals</button>
-      <button data-toggle="tab" data-tabs=".gtabs.demo" data-tab=".tab-3" class="btn btn-info" >top collection</button>
+        @php
+            $index=1;
+        @endphp
+        @foreach ($featuredCategories as $category)
+            @if ($category->showAtHome)
+                <button data-toggle="tab" data-tabs=".gtabs.demo" data-tab=".tab-{{$loop->index++}}" class="btn btn-info" >{{$category->name}}</button>
+            @endif
+        @endforeach
     </div>
     <br />
     <div class="container">
         <div class="gtabs demo">
-            <div class="gtab active tab-1">
-              <div class="products-list">
-                  <div class="product">
-                      <img src="/assets/images/products/winter-cloth.jpg" alt="">
-                      <div class="sale">sale!</div>
-                      <div class="name">Ladies winter cloth</div>
-                      <div class="price">
-                          <span class="new">30.00$</span>
-                          <span class="old">40.00$</span>
-                      </div>
-                  </div>
-                  <div class="product">
-                      <img src="/assets/images/products/winter-cloth.jpg" alt="">
-                      <div class="sale">sale!</div>
-                      <div class="name">Ladies winter cloth</div>
-                      <div class="price">
-                          <span class="new">30.00$</span>
-                          <span class="old">40.00$</span>
-                      </div>
-                  </div>
-                  <div class="product">
-                      <img src="/assets/images/products/winter-cloth.jpg" alt="">
-                      <div class="name">Ladies winter cloth</div>
-                      <div class="price">
-                          <span class="new">30.00$</span>
-                          <span class="old">40.00$</span>
-                      </div>
-                  </div>
-                  <div class="product">
-                      <img src="/assets/images/products/winter-cloth.jpg" alt="">
-                      <div class="name">Ladies winter cloth</div>
-                      <div class="price">
-                          <span class="new">30.00$</span>
-                          <span class="old">40.00$</span>
-                      </div>
-                  </div>
-                  <div class="product">
-                      <img src="/assets/images/products/winter-cloth.jpg" alt="">
-                      <div class="name">Ladies winter cloth</div>
-                      <div class="price">
-                          <span class="new">30.00$</span>
-                          <span class="old">40.00$</span>
-                      </div>
-                  </div>
-              </div>
-            </div>
-            
-            <div class="gtab tab-2">
-              <div class="products-list">
-                  <div class="product">
-                      <img src="/assets/images/products/women-sweater.jpg" alt="">
-                      <div class="sale">sale!</div>
-                      <div class="name">Ladies winter cloth</div>
-                      <div class="price">
-                          <span class="new">30.00$</span>
-                          <span class="old">40.00$</span>
-                      </div>
-                  </div>
-                  <div class="product">
-                      <img src="/assets/images/products/women-sweater.jpg" alt="">
-                      <div class="sale">sale!</div>
-                      <div class="name">Ladies winter cloth</div>
-                      <div class="price">
-                          <span class="new">30.00$</span>
-                          <span class="old">40.00$</span>
-                      </div>
-                  </div>
-                  <div class="product">
-                      <img src="/assets/images/products/women-sweater.jpg" alt="">
-                      <div class="name">Ladies winter cloth</div>
-                      <div class="price">
-                          <span class="new">30.00$</span>
-                          <span class="old">40.00$</span>
-                      </div>
-                  </div>
-                  <div class="product">
-                      <img src="/assets/images/products/women-sweater.jpg" alt="">
-                      <div class="name">Ladies winter cloth</div>
-                      <div class="price">
-                          <span class="new">30.00$</span>
-                          <span class="old">40.00$</span>
-                      </div>
-                  </div>
-                  <div class="product">
-                      <img src="/assets/images/products/women-sweater.jpg" alt="">
-                      <div class="name">Ladies winter cloth</div>
-                      <div class="price">
-                          <span class="new">30.00$</span>
-                          <span class="old">40.00$</span>
-                      </div>
-                  </div>
-              </div>
-            </div>
-            
-            <div class="gtab tab-3">
-              <div class="products-list">
-                  <div class="product">
-                      <img src="/assets/images/products/black-cloth.jpg" alt="">
-                      <div class="name">Ladies winter cloth</div>
-                      <div class="price">
-                          <span class="new">30.00$</span>
-                          <span class="old">40.00$</span>
-                      </div>
-                  </div>
-                  <div class="product">
-                      <img src="/assets/images/products/black-cloth.jpg" alt="">
-                      <div class="sale">sale!</div>
-                      <div class="name">Ladies winter cloth</div>
-                      <div class="price">
-                          <span class="new">30.00$</span>
-                          <span class="old">40.00$</span>
-                      </div>
-                  </div>
-                  <div class="product">
-                      <img src="/assets/images/products/black-cloth.jpg" alt="">
-                      <div class="name">Ladies winter cloth</div>
-                      <div class="price">
-                          <span class="new">30.00$</span>
-                          <span class="old">40.00$</span>
-                      </div>
-                  </div>
-                  <div class="product">
-                      <img src="/assets/images/products/black-cloth.jpg" alt="">
-                      <div class="name">Ladies winter cloth</div>
-                      <div class="price">
-                          <span class="new">30.00$</span>
-                          <span class="old">40.00$</span>
-                      </div>
-                  </div>
-                  <div class="product">
-                      <img src="/assets/images/products/black-cloth.jpg" alt="">
-                      <div class="sale">sale!</div>
-                      <div class="name">Ladies winter cloth</div>
-                      <div class="price">
-                          <span class="new">30.00$</span>
-                          <span class="old">40.00$</span>
-                      </div>
-                  </div>
-              </div>
-            </div>
+        @php
+            $index=1;
+        @endphp
+        @foreach ($featuredCategories as $category)
+            @if ($category->showAtHome)
+                <div class="gtab {{($index ==1 ? 'active':'')}} tab-{{$index++}}">
+                    <div class="products-list">
+                        @foreach ($category->products as $product)
+                            <div class="product">
+                                <a href={{route('product.show',[$product->id])}}>
+                                    <img src="{{asset('storage/assets/images/products/'.$product->images[0]->src)}}" alt="">
+                                    <div class="name">{{$product->name}}</div>
+                                    <div class="price">
+                                        <span class="new">{{$product->price}}$</span>
+                                    </div>
+                                </a>
+                            </div>  
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+        @endforeach
           </div>
     </div>
-
-
+    
     <div class="services">
         <div class="container">
             <div class="service">
@@ -201,9 +87,10 @@
         </div>
     </div>
 
-
       <script>
         jQuery(document).ready(function($){
+            $("#tabs").children(":first").addClass('active');
+
             $(".banner-carousel").owlCarousel({
                 items:3,
                 margin:15,

@@ -11,25 +11,37 @@ use App\Models\Category_Product;
 class ProductController extends Controller
 {
 
-    public function index(){
-        return view('pages.shop')->with('categories', Category::with('children')
+    public function index(Request $request){
+        $products =Product::all();
+        $categoryId=0;
+
+        if ($request->category){
+            $products = Category::findOrFail($request->category)->products;
+            $categoryId = $request->category;
+        }
+
+        $categories = Category::with('children')
         ->whereNull('parent')
         ->orderBy('name', 'asc')
-        ->get());
-    }
+        ->get();
 
+        return view('pages.shop',[
+            'products'=>$products,
+            'categoryId'=>$categoryId,
+            'categories'=>$categories
+        ]);
+    }
 
     public function create(){
         
     }
-
 
     public function store(Request $request){
        
         $this->validate($request,[
             'name'=>'required',
             'description'=>'required',
-            'price'=>'required',
+            'price'=>'required|numeric|min:1',
             'product_images'=>'required'
         ]);
 
@@ -65,23 +77,27 @@ class ProductController extends Controller
             }
         }
         
-        return redirect()->route('dashboard.products');
+        return redirect()
+                ->route('dashboard.products')
+                ->with('success','Product has been added!');
+
     }
 
 
     public function show($id){
-
+        $product = Product::findOrFail($id);
+        return view('pages.show-product',[
+            'product'=>$product
+        ]);
     }
 
 
     public function edit($id){
         $product = Product::findOrFail($id);
         return view('pages.admin.edit-product',[
-            'product'=>$product
-        ])->with('categories', Category::with('children')
-        ->whereNull('parent')
-        ->orderBy('name', 'asc')
-        ->get());
+            'product'=>$product,
+            'categories'=>Category::all()
+        ]);
     }
 
 
@@ -145,7 +161,9 @@ class ProductController extends Controller
 
         $product->save();
 
-        return redirect()->route('dashboard.product.edit',$id);
+        return redirect()
+                ->route('dashboard.product.edit',$id)
+                ->with('success','Product has been saved!');
 
     }
 
@@ -154,4 +172,5 @@ class ProductController extends Controller
         return redirect()->route('dashboard.products');
 
     }
+    
 }

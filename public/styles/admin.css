@@ -171,11 +171,15 @@ table tbody tr td {
     padding: 10px 5px;
 }
 
-table .operation{
+table .operation {
     display: flex;
 }
 
-table .delete-form button{
+table .operation.image {
+    line-height: 6;
+}
+
+table .delete-form button {
     background-color: transparent;
     border: none;
     cursor: pointer;
@@ -211,6 +215,23 @@ table .delete-form button{
 .form-group .label {
     font-size: 13px;
     font-weight: 400;
+    text-transform: capitalize;
+}
+
+.isfeature {
+    display: flex;
+    align-items: center;
+}
+
+.isfeature .checkbox-label {
+    font-weight: 600;
+    font-size: 12px;
+}
+
+.isfeature input[type="checkbox"] {
+    width: auto;
+    text-align: left;
+    margin-right: 15px;
 }
 
 .save-btn {
@@ -261,16 +282,27 @@ table .delete-form button{
     margin-top: 35px;
 }
 
-.chosen-container-multi .chosen-choices{
+.chosen-container-multi .chosen-choices {
     padding: 5px 10px !important;
     background: none !important;
     border: 1px solid #d4d4d4 !important;
 }
 
-
-#frames{
+#frames {
     margin-top: 40px;
 }
-#frames img{
+
+#frames img {
     margin-left: 10px;
+}
+
+.error-message {
+    color: red;
+    font-size: 10px;
+    font-weight: 500;
+}
+
+.fa-edit,
+.fa-eye {
+    color: #0f172a;
 }

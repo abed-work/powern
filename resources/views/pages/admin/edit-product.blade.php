@@ -11,36 +11,43 @@
                 <div class="form-group">
                     <div class="label">Name</div>
                     <input type="text" name="name" id="" placeholder="Laptops..." value="{{$product->name}}">
+                    @error('name')
+                        <div class="error-message">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <div class="label">Price</div>
                     <input type="number" name="price" id="" min="0" placeholder="10.00" step="0.01" required value="{{$product->price}}">
+                    @error('price')
+                        <div class="error-message">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <div class="label">Description</div>
                     <textarea  id="" name="description" cols="30" rows="10" placeholder="Description">{{$product->description}}</textarea>
+                    @error('description')
+                        <div class="error-message">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <div class="label">Choose one or more categories</div>
                     <select data-placeholder="Begin typing a category name to filter..." multiple class="chosen-select" name="product_categories[]">
-                           @foreach ($product->categories as $productCategory)
-                                <option selected value="{{$productCategory->id}}">{{$productCategory->name}}</option> 
-                           @endforeach
                            @foreach ($categories as $category)
-                            @php
-                                $notIn=true
-                            @endphp
-                               @foreach ($product->categories as $productCategories)
-                                   @if ($productCategories->id == $category->id)
-                                       @php
-                                           $notIn=false
-                                       @endphp
-                                   @endif
-                               @endforeach
-                               @if ($notIn)
+                                @php
+                                    $found=false
+                                @endphp
+                                @foreach ($product->categories as $productCategory)
+                                    @if ($category->id == $productCategory->id)
+                                        <option selected value="{{$category->id}}">{{$category->name}}</option> 
+                                        @php
+                                            $found=true
+                                        @endphp
+                                    @endif
+                                @endforeach
+                                @if (!$found)
                                     <option value="{{$category->id}}">{{$category->name}}</option> 
-                               @endif
-                           @endforeach
+                                @endif
+                            @endforeach
                     </select>
                 </div>
                 <div class="form-group image-parent">
@@ -49,6 +56,9 @@
                         <span class="image-label">Upload an image</span>
                         <input id="images" type="file" name="product_images[]" accept="image/gif, image/jpeg, image/png" multiple>
                     </span>
+                    @error('product_images')
+                        <div class="error-message">{{ $message }}</div>
+                    @enderror
                     <div class="hidden-images">
                         
                     </div>
