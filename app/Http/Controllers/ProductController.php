@@ -168,9 +168,19 @@ class ProductController extends Controller
     }
 
     public function destroy($id){
-        $product = Product::findOrFail($id)->delete();
-        return redirect()->route('dashboard.products');
 
+        $product = Product::findOrFail($id);
+
+        foreach($product->images as $imageToRemove){
+            var_dump($imageToRemove->src);
+            if (file_exists(storage_path().'/app/public/assets/images/products/'.$imageToRemove->src)){
+                unlink(storage_path().'/app/public/assets/images/products/'.$imageToRemove->src);
+            }
+        }
+
+        $product->delete();
+
+        return redirect()->route('dashboard.products');
     }
-    
+
 }

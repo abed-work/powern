@@ -45,7 +45,7 @@
             $(this).addClass('active-image');
             let getSrc = $(this).attr('src');
             $('.product-main-image img').attr('src',getSrc);
-        })
+        });
     });
 </script>
 

@@ -13,6 +13,10 @@
 </head>
 <body>
 
+    <div class="mobile-menu-icon">
+        <i class="fas fa-bars"></i>
+    </div>
+
     <div class="admin">
         <div class="side-bar">
             <div class="admin-head">
@@ -20,7 +24,6 @@
                 <div class="admin-email">admin@admin.com</div>
             </div>
             <ul>
-                <li><a href="{{route('dashboard.home')}}"> <span class="icon"><i class="fas fa-home"></i></span> <span>Home</span></a></li>
                 <li><a href="{{route('dashboard.categories')}}"> <span class="icon"><i class="fa fa-list-alt" aria-hidden="true"></i></span> <span>Categories</span></a></li>
                 <li><a href="{{route('dashboard.products')}}"> <span class="icon"><i class="fas fa-inventory"></i> </span> <span>Products</span></a></li>
                 <li><a href="{{route('dashboard.setting')}}"> <span class="icon"><i class="fas fa-cog"></i></span> <span>Setting</span></a></li>
@@ -44,12 +47,17 @@
                 no_results_text: "Oops, nothing found!"
             })
 
-                $('#images').change(function(){
-                    $("#frames").html('');
-                    for (var i = 0; i < $(this)[0].files.length; i++) {
-                        $("#frames").append('<img src="'+window.URL.createObjectURL(this.files[i])+'" width="100px" height="100px"/>');
-                    }
-                });
+            $('#images').change(function(){
+                $("#frames").html('');
+                for (var i = 0; i < $(this)[0].files.length; i++) {
+                    $("#frames").append('<img src="'+window.URL.createObjectURL(this.files[i])+'" width="100px" height="100px"/>');
+                }
+            });
+
+            $('.mobile-menu-icon').click(function(){
+                $('.side-bar').toggleClass('active-menu');
+                $('.mobile-menu-icon i').toggleClass('w-color');
+            });
         });
     </script>
 </body>

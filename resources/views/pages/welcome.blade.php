@@ -95,13 +95,38 @@
                 items:3,
                 margin:15,
                 loop:true,
-                autoPlay:true
+                autoPlay:true,
+                responsive:{
+                    0:{
+                        items:1
+                    },
+                    600:{
+                        items:2
+                    },
+                    800:{
+                        items:3
+                    }
+                }
             });
             $(".brands-list").owlCarousel({
                 items:5,
                 margin:15,
                 loop:true,
-                autoPlay:true
+                autoPlay:true,
+                responsive:{
+                    0:{
+                        items:2
+                    },
+                    500:{
+                        items:3 
+                    },
+                    800:{
+                        items:4
+                    },
+                    1100:{
+                        items:5
+                    }
+                }
             });
             $("[data-toggle='tab']").click(function () {
                 $("[data-toggle='tab']").removeClass('active');

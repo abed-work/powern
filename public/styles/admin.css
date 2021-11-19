@@ -306,3 +306,33 @@ table .delete-form button {
 .fa-eye {
     color: #0f172a;
 }
+
+.mobile-menu-icon {
+    position: absolute;
+    left: 20px;
+    top: 10px;
+    z-index: 5;
+    display: none;
+}
+
+.w-color {
+    color: #fff;
+}
+
+.active-menu {
+    left: 0 !important;
+}
+
+@media only screen and (max-width:1024px) {
+    .side-bar {
+        position: absolute;
+        left: -100%;
+        transition: all 0.2s linear;
+    }
+    .admin .main-content {
+        width: 100%;
+    }
+    .mobile-menu-icon {
+        display: block;
+    }
+}

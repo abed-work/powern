@@ -17,10 +17,18 @@
                     <ul>
                         @foreach ($categories as $parent)
                             <li class="category {{(count($parent->children)?'parent-category':'')}}" >
-                                <a href={{route('shop',['category'=>$parent->id])}} class={{($categoryId == $parent->id ? 'active-link':'')}}>
-                                    <span class="right-icon"><i class="fas fa-arrow-right"></i></span>
-                                    <span>{{$parent->name}}</span>
-                                </a>
+                                @if ((count($parent->children) > 0))
+                                <div class="flex">
+                                    <a href={{route('shop',['category'=>$parent->id])}} class={{($categoryId == $parent->id ? 'active-link':'')}}>
+                                        <span>{{$parent->name}}</span>
+                                    </a>
+                                    <span><i class="fas fa-plus"></i></span>
+                                </div>
+                                @else
+                                    <a href={{route('shop',['category'=>$parent->id])}} class={{($categoryId == $parent->id ? 'active-link':'')}}>
+                                        <span>{{$parent->name}}</span>
+                                    </a>
+                                @endif
                                 @if (count($parent->children) > 0)
                                     <ul class="subcategory">
                                         @foreach ($parent->children as $subcategory)
@@ -52,6 +60,25 @@
                     </a>
                 </div>
             @endforeach
+            @if ($categoryId !=0 )
+                @foreach ($categories as $parent)
+                    @if ($parent->id == $categoryId)
+                        @foreach ($parent->children as $category)
+                            @foreach ($category->products as $product)
+                                <div class="product">
+                                    <a href={{route('product.show',[$product->id])}}>
+                                        <img src="{{asset('/storage/assets/images/products/'.$product->images[0]->src)}}" alt="">
+                                        <div class="name">{{$product->name}}</div>
+                                        <div class="price">
+                                            <span class="new">{{$product->price}}$</span>
+                                        </div>
+                                    </a>
+                                </div>
+                            @endforeach
+                        @endforeach
+                    @endif
+                @endforeach
+            @endif
         </div>
         
     </div>
@@ -59,6 +86,9 @@
 <script>
     jQuery(document).ready(function($){
         $('.active-link').parents('.subcategory').siblings('a').addClass('active-link');
+        $('.category ').click(function(){
+            $(this).children('.subcategory').slideToggle();
+        })
     });
 </script>
 @endsection
