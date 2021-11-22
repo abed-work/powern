@@ -45,9 +45,6 @@
                                 <a href={{route('product.show',[$product->id])}}>
                                     <img src="{{asset('storage/assets/images/products/'.$product->images[0]->src)}}" alt="">
                                     <div class="name">{{$product->name}}</div>
-                                    <div class="price">
-                                        <span class="new">{{number_format($product->price * $dollarRate,2)}} LBP</span>
-                                    </div>
                                 </a>
                             </div>  
                         @endforeach

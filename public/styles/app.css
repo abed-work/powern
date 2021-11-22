@@ -497,11 +497,11 @@ header nav ul li a {
     max-width: 700px;
     margin: 50px auto;
     padding: 50px;
-    border: 1px solid #f0f0f0;
+    border: 1px solid #ec8923;
 }
 
 #login legend {
-    color: #009E60;
+    color: #ec8923;
     font-size: 35px;
 }
 
@@ -510,7 +510,7 @@ header nav ul li a {
 }
 
 #login input[type="submit"] {
-    background-color: #009E60;
+    background-color: #ec8923;
     color: #fff;
     font-size: 17px;
     padding: 0;
