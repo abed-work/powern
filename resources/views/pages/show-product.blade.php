@@ -17,7 +17,6 @@
             </div>
             <div class="right">
                 <div class="product-name">{{$product->name}}</div>
-                <div class="product-price">{{number_format($product->price * $dollarRate,2)}} LBP</div>
             <div class="product-description">{{$product->description}}</div>
                 <div class="product-category">
                     @if (count($product->categories) > 0)

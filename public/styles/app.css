@@ -288,12 +288,12 @@ header nav ul li a {
 
 .card-body .category a:hover {
     color: #fff;
-    background-color: #17062a;
+    background-color: #ec8923;
 }
 
 .card-body .category a.active-link {
     color: #fff;
-    background-color: #17062a;
+    background-color: #ec8923;
 }
 
 .card-body .category a.active-link i {
