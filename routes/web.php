@@ -46,8 +46,6 @@ Route::post('/logout', [AuthController::class,'logout']);
 Route::get('/product/{id}', [ProductController::class,'show'])->name('product.show');
 
 
-Route::get('/dollar',[LiraController::class,'index']);
-
 
 
 /* Admin Routes */

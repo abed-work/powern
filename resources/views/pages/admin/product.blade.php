@@ -3,14 +3,17 @@
 @section('content')
 
     <div class="card category-list">
-        <div class="card-header"><i class="fas fa-clipboard-list"></i>Products List</div>
+        <div class="card-header header-search">
+            <div><i class="fas fa-clipboard-list"></i>Products List</div>
+            <div class="product-search"><input type="text" name="product-search" placeholder="Search by name"></div>
+        </div>
         <div class="card-body">
            <table>
                <thead>
                     <th>#</th>
                     <th>Image</th>
                     <th>Name</th>
-                    <th>Price</th>
+                    <th>Price($)</th>
                     <th>Category</th>
                     <th>Operation</th>
                </thead>
@@ -68,7 +71,7 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <div class="label">Price</div>
+                    <div class="label">Price (in USD)</div>
                     <input type="number" name="price" id="" min="0" placeholder="10.00" step="0.01" required >
                     @error('price')
                         <div class="error-message">{{ $message }}</div>
@@ -100,4 +103,33 @@
             @endif
         </div>
     </div>
+
+
+    <style>
+        .header-search{
+            display: flex;
+            justify-content: space-between;
+            align-items: center
+        }
+        .header-search .product-search input{
+            width: 250px;
+            height: 40px;
+            border-radius: 5px;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function(){
+            var $rows = $('table tbody tr');
+            $('.product-search input').keyup(function() {
+                var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+
+                $rows.show().filter(function() {
+                    var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+                    return !~text.indexOf(val);
+                }).hide();
+            });
+        })
+    </script>
+
 @endsection

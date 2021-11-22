@@ -9,9 +9,13 @@
                 @foreach ($settings as $setting)
                     <div class="form-group">
                         <div class="label">{{$setting->key}}</div>
-                        <input type="text" name="{{$setting->key}}" id="" value="{{$setting->value}}">
+                        <input type="text" name="{{$setting->key}}" id="{{$setting->key}}" value="{{$setting->value}}">
                     </div>
                 @endforeach
+                <div class="form-group">
+                    <div class="label">Final Dollar rate in LBP </div>
+                    <input type="number" name="finalprice" id="" placeholder="" value="{{$settings[3]->value + $settings[4]->value}}" readonly style="background-color: #d4d4d4">
+                </div>
                 <div class="form-group ">
                     <input class="save-btn" type="submit" value="Save changes">
                 </div>
@@ -21,4 +25,12 @@
             @endif
         </div>
     </div>
+
+    <script>
+        $(document).ready(function(){
+            $('#dollarRate').keyup(function(){
+                console.log($(this).attr('value'));
+            })
+        })
+    </script>
 @endsection

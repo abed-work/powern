@@ -3,24 +3,22 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Goutte;
-use Spatie\ArrayToXml\ArrayToXml;
-use Goutte\Client;
-use Symfony\Component\DomCrawler\Crawler;
-
+use App\Models\Setting;
+use DB;
 
 class LiraController extends Controller
 {
     //
     public function index(){
+        $json = file_get_contents('https://lirarate.org/wp-json/lirarate/v2/rates?currency=LBP&_ver=t2021112210');
+        $obj = json_decode($json,True);
+        $dollarRateToday = $obj['buy'][count($obj['buy'])-1][1];
 
-       /* $html = file_get_contents('https://lirarate.org/converter/');
-
-        $crawler = new Crawler($html);
-
-        $nodes = $crawler->filter('.buy-result .amount');
-
-        echo $nodes->text();*/
+        DB::table('settings')
+            ->where('key', 'dollarRate') 
+            ->limit(1) 
+            ->update(array('value' => $dollarRateToday));  
+                
     }
 
 }

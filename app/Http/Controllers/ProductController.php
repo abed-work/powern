@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Setting;
 use App\Models\Image;
 use App\Models\Category;
 use App\Models\Category_Product;
@@ -20,6 +21,11 @@ class ProductController extends Controller
             $categoryId = $request->category;
         }
 
+
+        // Get Dollar rate
+        
+        $dollarRate= Setting::where('key','dollarRate')->first();
+
         $categories = Category::with('children')
         ->whereNull('parent')
         ->orderBy('name', 'asc')
@@ -28,7 +34,9 @@ class ProductController extends Controller
         return view('pages.shop',[
             'products'=>$products,
             'categoryId'=>$categoryId,
-            'categories'=>$categories
+            'categories'=>$categories,
+            'dollarRate'=>$dollarRate->value
+
         ]);
     }
 
@@ -86,8 +94,10 @@ class ProductController extends Controller
 
     public function show($id){
         $product = Product::findOrFail($id);
+        $dollarRate= Setting::where('key','dollarRate')->first();
         return view('pages.show-product',[
-            'product'=>$product
+            'product'=>$product,
+            'dollarRate'=>$dollarRate->value
         ]);
     }
 

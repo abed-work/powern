@@ -3,7 +3,10 @@
 @section('content')
 
     <div class="card category-list">
-        <div class="card-header"><i class="fas fa-clipboard-list"></i>Categories List</div>
+        <div class="card-header header-search">
+            <div><i class="fas fa-clipboard-list"></i>Categories List</div>
+            <div class="category-search"><input type="text" placeholder="Search By Name"></div>
+        </div>
         <div class="card-body">
            <table>
                <thead>
@@ -145,4 +148,34 @@
             @endif
         </div>
     </div>
+
+    <style>
+        .header-search{
+            display: flex;
+            justify-content: space-between;
+            align-items: center
+        }
+        .header-search .category-search input{
+            width: 250px;
+            height: 40px;
+            border-radius: 5px;
+        }
+    </style>
+
+    <script>
+        $(document).ready(function(){
+            var $rows = $('table tbody tr');
+            $('.category-search input').keyup(function() {
+                var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+
+                $rows.show().filter(function() {
+                    var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+                    return !~text.indexOf(val);
+                }).hide();
+            });
+        })
+    </script>
+
+
+
 @endsection

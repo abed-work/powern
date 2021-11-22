@@ -46,7 +46,7 @@
                                     <img src="{{asset('storage/assets/images/products/'.$product->images[0]->src)}}" alt="">
                                     <div class="name">{{$product->name}}</div>
                                     <div class="price">
-                                        <span class="new">{{$product->price}}$</span>
+                                        <span class="new">{{number_format($product->price * $dollarRate,2)}} LBP</span>
                                     </div>
                                 </a>
                             </div>  
@@ -75,17 +75,6 @@
         </div>
     </div>
 
-    <div class="brands">
-        <div class="container">
-            <div class="brands-list owl-carousel">
-                <div class="brand"><img src="assets/images/brands/brand-1.png" alt=""></div>
-                <div class="brand"><img src="assets/images/brands/brand-2.png" alt=""></div>
-                <div class="brand"><img src="assets/images/brands/brand-3.png" alt=""></div>
-                <div class="brand"><img src="assets/images/brands/brand-4.png" alt=""></div>
-                <div class="brand"><img src="assets/images/brands/brand-5.png" alt=""></div>
-            </div>
-        </div>
-    </div>
 
       <script>
         jQuery(document).ready(function($){
@@ -108,26 +97,7 @@
                     }
                 }
             });
-            $(".brands-list").owlCarousel({
-                items:5,
-                margin:15,
-                loop:true,
-                autoPlay:true,
-                responsive:{
-                    0:{
-                        items:2
-                    },
-                    500:{
-                        items:3 
-                    },
-                    800:{
-                        items:4
-                    },
-                    1100:{
-                        items:5
-                    }
-                }
-            });
+
             $("[data-toggle='tab']").click(function () {
                 $("[data-toggle='tab']").removeClass('active');
                 $(this).addClass('active');

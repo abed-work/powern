@@ -14,10 +14,3 @@ class Setting extends Model
         'value'
     ];
 }
-
-
-/*
-    Settings
-        3 rows (facebook, instagram, whattsapp)
-
-*/
