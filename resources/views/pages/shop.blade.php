@@ -78,7 +78,8 @@
 </div>
 <script>
     jQuery(document).ready(function($){
-        $('.active-link').parents('.subcategory').siblings('a').addClass('active-link');
+        //$('.active-link').parents('.parent-category').children('.flex a').addClass('active-link');
+        $('.active-link').parents('.subcategory').show();
         $('.category ').click(function(){
             $(this).children('.subcategory').slideToggle();
         })

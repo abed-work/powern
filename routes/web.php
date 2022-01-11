@@ -33,24 +33,17 @@ Route::get('contact-us', function () {
     return view('pages.contact');
 })->name('contact-us');
 
-
-
 Route::get('/login', [AuthController::class,'index'])->name('login');
 Route::post('/login', [AuthController::class,'authenticate']);
 
 Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 Route::post('/logout', [AuthController::class,'logout']);
 
-
-
 Route::get('/product/{id}', [ProductController::class,'show'])->name('product.show');
-
-
-
 
 /* Admin Routes */
 
-Route::prefix('dashboard')->name('dashboard.')->group(function () {
+Route::middleware(['auth'])->prefix('dashboard')->name('dashboard.')->group(function () {
 
     Route::get('/', [DashboardController::class,'index'])->name('home');
 
@@ -60,7 +53,6 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
     Route::put('/categories/{id}', [CategoryController::class,'update'])->name('category.update');
     Route::delete('/categories/{id}', [CategoryController::class,'destroy'])->name('category.delete');
 
-
     Route::get('/products', [DashboardController::class,'product'])->name('products');
     Route::post('/products',[ProductController::class,'store'])->name('product.store');
     Route::get('/products/{id}/edit', [ProductController::class,'edit'])->name('product.edit');
@@ -68,8 +60,6 @@ Route::prefix('dashboard')->name('dashboard.')->group(function () {
     Route::delete('/products/{id}', [ProductController::class,'destroy'])->name('product.delete');
 
     Route::get('/setting', [DashboardController::class,'setting'])->name('setting');
-
     Route::post('/setting/edit', [SettingController::class,'update'])->name('setting.update');
-
 
 });
