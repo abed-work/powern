@@ -323,6 +323,32 @@ table .delete-form button {
     left: 0 !important;
 }
 
+.currencies{
+    display: flex;
+    justify-content: space-around;
+    padding: 25px 0;
+}
+.currencies label{
+    font-weight: 300;
+}
+.currencies .currency{
+    border: 1px solid #d4d4d4;
+    padding: 30px;
+    width: 200px;
+    text-align: center;
+    border-radius: 8px;
+}
+.currencies .title{
+    color: #000;
+    font-weight: 600;
+}
+
+.currency-fields > *{
+    display: none;
+    margin-bottom: 15px;
+}
+
+
 @media only screen and (max-width:1024px) {
     .side-bar {
         position: absolute;

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="card category-list">
-        <div class="card-header"><i class="fas fa-clipboard-list"></i>Settings</div>
+        <div class="card-header"><i class="fas fa-clipboard-list"></i>Social media settings</div>
         <div class="card-body">
             <form action="{{route('dashboard.setting.update')}}" method="POST">
                 @csrf
@@ -12,10 +12,6 @@
                         <input type="text" name="{{$setting->key}}" id="{{$setting->key}}" value="{{$setting->value}}">
                     </div>
                 @endforeach
-                <div class="form-group">
-                    <div class="label">Final Dollar rate in LBP </div>
-                    <input type="number" name="finalprice" id="finalprice" placeholder="" value="{{$settings[3]->value + $settings[4]->value}}" readonly style="background-color: #d4d4d4">
-                </div>
                 <div class="form-group ">
                     <input class="save-btn" type="submit" value="Save changes">
                 </div>
@@ -26,17 +22,71 @@
         </div>
     </div>
 
+    <div class="card">
+        <div class="card-header"><i class="fas fa-money-bill-wave-alt"></i> Currency Settings</div>
+        <div class="card-body">
+            <form action="{{ route('dashboard.currency.store')}}" method="POST">
+                @csrf
+                <div class="form-group">
+                    <div class="">Website Currency</div>
+                    <div class="currencies">
+                        <div class="currency lebanese-pound">
+                            <label for="lbp">Lebanese Pound</label>
+                            @if ($LBP->isActive)
+                                <input id="lbp" type="checkbox" name="currencies[]" value="LBP" checked>
+                            @else
+                                <input id="lbp" type="checkbox" name="currencies[]" value="LBP">
+                            @endif
+                        </div>
+                        <div class="currency turkish-lira">
+                            <label for="tl">Turkish Lira</label>
+                            @if ($TL->isActive)
+                                <input id="tl" type="checkbox" name="currencies[]" value="TL" checked>
+                            @else
+                                <input id="tl" type="checkbox" name="currencies[]" value="TL">
+                            @endif
+                        </div>
+                        <div class="currency us-dollar">
+                            <label for="usd">US Dollar</label>
+                            @if ($USD->isActive)
+                                <input id="usd" type="checkbox" name="currencies[]" value="USD" checked>
+                            @else
+                                <input id="usd" type="checkbox" name="currencies[]" value="USD">
+                            @endif
+                        </div>
+                    </div>
+                    <div class="currency-fields">
+                        <div class="LBP-field">
+                            <div class="label">1 US dollar in lebanese lira</div>
+                            <input type="text" name="LBP_value" value="{{ $LBP->value }}">
+                        </div>
+                        <div class="TL-field">
+                            <div class="label">1 US dollar in Turkish lira</div>
+                            <input type="text" name="TL_value" value="{{ $TL->value }}">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <input class="save-btn" type="submit" value="Save changes">
+                </div>
+            </form>
+        </div>
+    </div>
+
     <script>
         $(document).ready(function(){
-            $('#dollarRate').keyup(function(e){
-                let extra = ($('#extra').attr('value'));
-                $('#finalprice').attr('value',(parseInt(e.currentTarget.value) + parseInt(extra)));
-            });
 
-            $('#extra').keyup(function(e){
-                let dollarRate = ($('#dollarRate').attr('value'));
-                $('#finalprice').attr('value',(parseInt(e.currentTarget.value) + parseInt(dollarRate) ));
-            })
-        })
+            if ($('#lbp').attr('checked')){
+                $('.LBP-field').css('display','block');
+            }
+
+            if ($('#tl').attr('checked')){
+                $('.TL-field').css('display','block');
+            }
+
+            $('.currency input').click(function(){
+                $('.'+this.value+'-field').slideToggle();
+            });
+        });
     </script>
 @endsection

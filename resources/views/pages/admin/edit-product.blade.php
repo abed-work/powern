@@ -16,7 +16,7 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <div class="label">Price</div>
+                    <div class="label">Price (USD)</div>
                     <input type="number" name="price" id="" min="0" placeholder="10.00" step="0.01" required value="{{$product->price}}">
                     @error('price')
                         <div class="error-message">{{ $message }}</div>

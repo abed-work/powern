@@ -308,8 +308,18 @@ header nav ul li a {
     border-bottom: none;
 }
 
+.currency{
+    margin-bottom: 25px;
+}
+
+.currency select{
+    border: none;
+    padding: 0 8px;
+}
+
 .sidebar .parent-category .subcategory {
     display: none;
+    outline: none;
 }
 
 .products-list .product {
@@ -565,6 +575,11 @@ header nav ul li a {
 
 .right .product-price {
     font-size: 20px
+}
+
+.right .product-price .price.USD{
+    font-size: 13px;
+    font-weight: 600;
 }
 
 .right .product-description {

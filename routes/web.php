@@ -7,7 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\LiraController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\PagesController;
-use App\Http\Controllers\SettingController;
+use App\Http\Controllers\{SettingController,CurrencyController};
 use App\Models\Category;
 
 /*
@@ -61,5 +61,7 @@ Route::middleware(['auth'])->prefix('dashboard')->name('dashboard.')->group(func
 
     Route::get('/setting', [DashboardController::class,'setting'])->name('setting');
     Route::post('/setting/edit', [SettingController::class,'update'])->name('setting.update');
+
+    Route::resource('/currency', CurrencyController::class);
 
 });

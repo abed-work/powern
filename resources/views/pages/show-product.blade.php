@@ -1,7 +1,6 @@
 @extends('layouts.layout')
 
 @section('content')
-
 <div class="single-product">
     <div class="container">
         <div class="wrapper">
@@ -17,7 +16,14 @@
             </div>
             <div class="right">
                 <div class="product-name">{{$product->name}}</div>
-            <div class="product-description">{{$product->description}}</div>
+                <div class="product-price">
+                    @foreach ($currencies as $currency)
+                        @if ($currency->isActive)
+                            <div class="price {{ $currency->symbol }}"> {{ number_format($currency->value * $product->price,2) . ' ' . $currency->icon  }}</div>
+                        @endif
+                    @endforeach
+                </div>
+                <div class="product-description">{{$product->description}}</div>
                 <div class="product-category">
                     @if (count($product->categories) > 0)
                         <span>Category:</span>

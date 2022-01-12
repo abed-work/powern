@@ -7,11 +7,10 @@ use App\Models\Product;
 use App\Models\Setting;
 use App\Models\Image;
 use App\Models\Category;
-use App\Models\Category_Product;
+use App\Models\{Category_Product,Currency};
 
 class ProductController extends Controller
 {
-
     public function index(Request $request){
         $products =Product::all();
         $categoryId=0;
@@ -24,20 +23,17 @@ class ProductController extends Controller
 
         // Get Dollar rate
         
-        $dollarRate= Setting::where('key','dollarRate')->first();
-
         $categories = Category::with('children')
-        ->whereNull('parent')
-        ->orderBy('name', 'asc')
-        ->get();
+                ->whereNull('parent')
+                ->orderBy('name', 'asc')
+                ->get();
 
         return view('pages.shop',[
             'products'=>$products,
             'categoryId'=>$categoryId,
             'categories'=>$categories,
-            'dollarRate'=>$dollarRate->value
-
         ]);
+
     }
 
     public function create(){
@@ -94,10 +90,10 @@ class ProductController extends Controller
 
     public function show($id){
         $product = Product::findOrFail($id);
-        $dollarRate= Setting::where('key','dollarRate')->first();
+        $currencies = Currency::all();
         return view('pages.show-product',[
-            'product'=>$product,
-            'dollarRate'=>$dollarRate->value
+            'product'     => $product,
+            'currencies'  => $currencies
         ]);
     }
 
