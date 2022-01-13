@@ -1,13 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\LiraController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\PagesController;
-use App\Http\Controllers\{SettingController,CurrencyController};
+use App\Http\Controllers\{  AuthController,
+                            CategoryController,
+                            DashboardController,
+                            LiraController,
+                            ProductController,
+                            PagesController,
+                            SettingController,
+                            CurrencyController
+                         };
 use App\Models\Category;
 
 /*

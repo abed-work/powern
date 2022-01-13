@@ -26,7 +26,8 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')->hourly();
 
-        $schedule->call('App\Http\Controllers\LiraController@index')->everyTwoHours();
+        $schedule->call('App\Http\Controllers\CurrencyController@convertCurrency')->hourly();
+        $schedule->call('App\Http\Controllers\CurrencyController@lebaneseLiraApi')->everyTwoHours();
     }
 
     /**

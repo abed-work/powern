@@ -30,30 +30,52 @@
                 <div class="form-group">
                     <div class="">Website Currency</div>
                     <div class="currencies">
+
                         <div class="currency lebanese-pound">
                             <label for="lbp">Lebanese Pound</label>
                             @if ($LBP->isActive)
-                                <input id="lbp" type="checkbox" name="currencies[]" value="LBP" checked>
+                                <input id="lbp" type="checkbox" name="currency" value="LBP" checked>
                             @else
-                                <input id="lbp" type="checkbox" name="currencies[]" value="LBP">
+                                <input id="lbp" type="checkbox" name="currency" value="LBP">
                             @endif
+
+                            <div class="usd" style="display: flex;align-items:center;justify-content:center;padding-top:30px">
+                                @if ($LBP->isActive && $USD->isActive)
+                                    <input style="width: 14px" type="checkbox" name="curren_usd" value="USD" checked>
+                                @else
+                                    <input style="width: 14px" type="checkbox" name="curren_usd" value="USD">
+                                @endif
+                                <div style="font-weight: bold" class="label">View USD</div>
+                            </div>
                         </div>
+
                         <div class="currency turkish-lira">
                             <label for="tl">Turkish Lira</label>
                             @if ($TL->isActive)
-                                <input id="tl" type="checkbox" name="currencies[]" value="TL" checked>
+                                <input id="tl" type="checkbox" name="currency" value="TL" checked>
                             @else
-                                <input id="tl" type="checkbox" name="currencies[]" value="TL">
+                                <input id="tl" type="checkbox" name="currency" value="TL">
                             @endif
+
+                            <div class="usd" style="display: flex;align-items:center;justify-content:center;padding-top:30px">
+                                @if ($TL->isActive && $USD->isActive)
+                                    <input style="width: 14px" type="checkbox" name="curren_usd" value="USD" checked>
+                                @else     
+                                    <input style="width: 14px" type="checkbox" name="curren_usd" value="USD">                               
+                                @endif
+                                <div style="font-weight: bold" class="label">View USD</div>
+                            </div>
                         </div>
+
                         <div class="currency us-dollar">
-                            <label for="usd">US Dollar</label>
-                            @if ($USD->isActive)
-                                <input id="usd" type="checkbox" name="currencies[]" value="USD" checked>
+                            <label for="lbp">US Dollar</label>
+                            @if ($USD->isActive && !$LBP->isActive && !$TL->isActive)
+                                <input id="usd" type="checkbox" name="currency" value="USD" checked>
                             @else
-                                <input id="usd" type="checkbox" name="currencies[]" value="USD">
+                                <input id="usd" type="checkbox" name="currency" value="USD">
                             @endif
                         </div>
+
                     </div>
                     <div class="currency-fields">
                         <div class="LBP-field">
@@ -75,18 +97,13 @@
 
     <script>
         $(document).ready(function(){
-
-            if ($('#lbp').attr('checked')){
-                $('.LBP-field').css('display','block');
-            }
-
-            if ($('#tl').attr('checked')){
-                $('.TL-field').css('display','block');
-            }
-
-            $('.currency input').click(function(){
-                $('.'+this.value+'-field').slideToggle();
+            $('input[name="currency"]').change(function(){
+                if ($(this).prop('checked')){
+                    $('input[name="currency"]').prop('checked',false);
+                    $(this).prop('checked',true);
+                }    
             });
+                    
         });
     </script>
 @endsection

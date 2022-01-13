@@ -344,7 +344,6 @@ table .delete-form button {
 }
 
 .currency-fields > *{
-    display: none;
     margin-bottom: 15px;
 }
 
