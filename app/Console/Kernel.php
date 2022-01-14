@@ -14,6 +14,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         //
+             
     ];
 
     /**
@@ -30,8 +31,9 @@ class Kernel extends ConsoleKernel
         $schedule->call('App\Http\Controllers\CurrencyController@lebaneseLiraApi')->everyTwoHours();
     }
 
-    /**
-     * Register the commands for the application.
+    /*
+
+     * Register the commands for the a+pplication.1
      *
      * @return void
      */

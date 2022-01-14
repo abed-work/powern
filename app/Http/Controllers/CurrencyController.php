@@ -92,7 +92,6 @@ class CurrencyController extends Controller
             $usd->isActive=1;
             $usd->save();
         }
- 
 
 
         $lebanesePound  = Currency::findOrFail(1);

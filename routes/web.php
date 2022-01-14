@@ -61,7 +61,7 @@ Route::middleware(['auth'])->prefix('dashboard')->name('dashboard.')->group(func
     Route::put('/products/{id}', [ProductController::class,'update'])->name('product.update');
     Route::delete('/products/{id}', [ProductController::class,'destroy'])->name('product.delete');
 
-    Route::get('/setting', [DashboardController::class,'setting'])->name('setting');
+    Route::get('/setting', [DashboardController::class,'setting'])->name('setting'); 
     Route::post('/setting/edit', [SettingController::class,'update'])->name('setting.update');
 
     Route::resource('/currency', CurrencyController::class);
